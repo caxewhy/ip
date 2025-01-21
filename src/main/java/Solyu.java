@@ -102,6 +102,8 @@ public class Solyu {
                     if (tasks.isEmpty()) {
                         System.out.println("Task list is empty!");
                     } else {
+                        System.out.println("You have " + tasks.size() + " tasks in your tasks list.");
+                        System.out.println("Here is your list: ");
                         for (int i = 0; i < tasks.size(); i++) {
                             System.out.println((i + 1) + ". " + tasks.get(i));
                         }
@@ -160,6 +162,35 @@ public class Solyu {
                         System.out.println("____________________________________________________________");
                     }
                     break;
+
+                case "delete":
+                    if (!argument.isEmpty()) {
+                        try {
+                            int task = Integer.parseInt(argument)-1;
+                            if (task >= 0 && task < tasks.size()) {
+                                Task removedTask = tasks.remove(task);
+                                System.out.println("____________________________________________________________");
+                                System.out.println("Noted. I've removed this task:");
+                                System.out.println(removedTask);
+                                System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                                System.out.println("____________________________________________________________");
+                            } else {
+                                System.out.println("____________________________________________________________");
+                                System.out.println("Invalid task number!");
+                                System.out.println("____________________________________________________________");
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("____________________________________________________________");
+                            System.out.println("Invalid input! Please enter a valid task number.");
+                            System.out.println("____________________________________________________________");
+                        }
+                    } else {
+                        System.out.println("____________________________________________________________");
+                        System.out.println("Please specify a task number!");
+                        System.out.println("____________________________________________________________");
+                    }
+                    break;
+
 
                 case "bye":
                     System.out.println(bye);
