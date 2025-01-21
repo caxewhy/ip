@@ -47,6 +47,60 @@ public class Solyu {
                     }
                     break;
 
+                case "todo":
+                    if (!argument.isEmpty()) {
+                        tasks.add(new ToDo(argument));
+                        System.out.println("____________________________________________________________");
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println("[T][ ] " + argument);
+                        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                        System.out.println("____________________________________________________________");
+                    } else {
+                        System.out.println("____________________________________________________________");
+                        System.out.println("Please specify a task!");
+                        System.out.println("____________________________________________________________");
+                    }
+                    break;
+
+                case "deadline":
+                    if (argument.contains("/by")) {
+                        parts = argument.split("/by", 2);
+                        String description = parts[0].trim();
+                        String by = parts[1].trim();
+                        tasks.add(new Deadline(description, by));
+                        System.out.println("____________________________________________________________");
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println("[D][ ] " + description + " (by: " + by + ")");
+                        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                        System.out.println("____________________________________________________________");
+                    } else {
+                        System.out.println("____________________________________________________________");
+                        System.out.println("Please specify deadline!");
+                        System.out.println("____________________________________________________________");
+                    }
+                    break;
+
+                case "event":
+                    if (argument.contains("/from") && argument.contains("/to")) {
+                        parts = argument.split("/from", 2);
+                        String description = parts[0].trim();
+                        String fromTo = parts[1].trim();
+                        String[] period = fromTo.split("/to", 2);
+                        String from = period[0].trim();
+                        String to = period[1].trim();
+                        tasks.add(new Event(description, from + " to " + to));
+                        System.out.println("____________________________________________________________");
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println("[E][ ] " + description + " (from: " + from + " to " + to + ")");
+                        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                        System.out.println("____________________________________________________________");
+                    } else {
+                        System.out.println("____________________________________________________________");
+                        System.out.println("Please specify an event with a valid period!");
+                        System.out.println("____________________________________________________________");
+                    }
+                    break;
+
                 case "list":
                     System.out.println("____________________________________________________________");
                     if (tasks.isEmpty()) {
