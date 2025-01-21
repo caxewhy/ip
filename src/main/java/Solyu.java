@@ -10,10 +10,6 @@ public class Solyu {
                 + " What can I do for you? \n"
                 + "____________________________________________________________\n";
 
-        String blah = "____________________________________________________________\n"
-                + " blah\n"
-                + "____________________________________________________________\n";
-
         String bye = "____________________________________________________________\n"
                 + " Bye. Hope to see you again soon!\n"
                 + "____________________________________________________________\n";
@@ -75,7 +71,7 @@ public class Solyu {
                         System.out.println("____________________________________________________________");
                     } else {
                         System.out.println("____________________________________________________________");
-                        System.out.println("Please specify deadline!");
+                        System.out.println("Please specify a deadline!");
                         System.out.println("____________________________________________________________");
                     }
                     break;
@@ -115,50 +111,54 @@ public class Solyu {
 
                 case "mark":
                     if (!argument.isEmpty()) {
-//                        System.out.println("Task to be marked: ");
-                        int mark = Integer.parseInt(argument) - 1;
-                        if (mark >= 0 && mark < tasks.size()) {
-                            tasks.get(mark).markAsDone();
+                        try {
+                            int mark = Integer.parseInt(argument) - 1;
+                            if (mark >= 0 && mark < tasks.size()) {
+                                tasks.get(mark).markAsDone();
+                                System.out.println("____________________________________________________________");
+                                System.out.println("Task marked as done: " + tasks.get(mark));
+                                System.out.println("____________________________________________________________");
+                            } else {
+                                System.out.println("____________________________________________________________");
+                                System.out.println("Invalid task number!");
+                                System.out.println("____________________________________________________________");
+                            }
+                        } catch (NumberFormatException e) {
                             System.out.println("____________________________________________________________");
-                            System.out.println("Task marked as done: " + tasks.get(mark));
-                            System.out.println("____________________________________________________________");
-                        } else {
-                            System.out.println("____________________________________________________________");
-                            System.out.println("Invalid task!");
+                            System.out.println("Invalid input! Please enter a valid task number.");
                             System.out.println("____________________________________________________________");
                         }
-                    }
-                    else {
+                    } else {
                         System.out.println("____________________________________________________________");
-                        System.out.println("Please specify a task!");
+                        System.out.println("Please specify a task number!");
                         System.out.println("____________________________________________________________");
                     }
                     break;
 
                 case "unmark":
                     if (!argument.isEmpty()) {
-//                    System.out.println("Task to be unmarked: ");
-                        int mark = Integer.parseInt(argument) - 1;
-                        if (mark >= 0 && mark < tasks.size()) {
-                            tasks.get(mark).unmark();
+                        try {
+                            int mark = Integer.parseInt(argument) - 1;
+                            if (mark >= 0 && mark < tasks.size()) {
+                                tasks.get(mark).unmark();
+                                System.out.println("____________________________________________________________");
+                                System.out.println("Task unmarked: " + tasks.get(mark));
+                                System.out.println("____________________________________________________________");
+                            } else {
+                                System.out.println("____________________________________________________________");
+                                System.out.println("Invalid task number!");
+                                System.out.println("____________________________________________________________");
+                            }
+                        } catch (NumberFormatException e) {
                             System.out.println("____________________________________________________________");
-                            System.out.println("Task unmarked: " + tasks.get(mark));
-                            System.out.println("____________________________________________________________");
-                        } else {
-                            System.out.println("____________________________________________________________");
-                            System.out.println("Invalid task!");
+                            System.out.println("Invalid input! Please enter a valid task number.");
                             System.out.println("____________________________________________________________");
                         }
-                    }
-                    else {
+                    } else {
                         System.out.println("____________________________________________________________");
-                        System.out.println("Please specify a task!");
+                        System.out.println("Please specify a task number!");
                         System.out.println("____________________________________________________________");
                     }
-                    break;
-
-                case "blah":
-                    System.out.println(blah);
                     break;
 
                 case "bye":
@@ -168,7 +168,8 @@ public class Solyu {
 
                 default:
                     System.out.println("____________________________________________________________");
-                    System.out.println(" No such command: " + command);
+                    System.out.println(" Oh no! I do not understand your command: " + command);
+                    System.out.println(" Please try another command :)");
                     System.out.println("____________________________________________________________");
                     break;
             }
