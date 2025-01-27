@@ -36,7 +36,8 @@ public class Ui {
      * @return The full command entered by the user.
      */
     public String readCommand() {
-        return scanner.nextLine().trim();
+        String input = scanner.nextLine();
+        return (input != null) ? input.trim() : "";
     }
 
     /**

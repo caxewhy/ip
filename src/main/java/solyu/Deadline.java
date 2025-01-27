@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  *  Deadline task in the task list.
  */
 public class Deadline extends Task {
-    private LocalDate by;
+    private LocalDate dueDate;
 
     /**
      * Constructs a new deadline task with the given description and due date.
@@ -15,9 +15,9 @@ public class Deadline extends Task {
      * @param description The description of the deadline task.
      * @param by The due date in the format "yyyy-MM-dd".
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String dueDate) {
         super(description);
-        this.by = parseDateTime(by);
+        this.dueDate = parseDateTime(dueDate);
     }
 
     /**
@@ -27,9 +27,9 @@ public class Deadline extends Task {
      * @param by The due date in the format "yyyy-MM-dd".
      * @param isDone true if the task is completed, otherwise false.
      */
-    public Deadline(String description, String by, boolean isDone) {
+    public Deadline(String description, String dueDate, boolean isDone) {
         super(description);
-        this.by = parseDateTime(by);
+        this.dueDate = parseDateTime(dueDate);
         this.isDone = isDone;
     }
 
@@ -54,7 +54,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         DateTimeFormatter userFriendlyFormat = DateTimeFormatter.ofPattern("MMM dd yyyy");
-        return "[D]" + super.toString() + " (by: " + by.format(userFriendlyFormat) + ")";
+        return "[D]" + super.toString() + " (dueDate: " + dueDate.format(userFriendlyFormat) + ")";
     }
 
     /**
@@ -64,6 +64,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileFormat() {
-        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + by;
+        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + dueDate;
     }
 }
