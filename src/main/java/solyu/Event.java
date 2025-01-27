@@ -1,5 +1,6 @@
-public class Event extends Task {
+package solyu;
 
+public class Event extends Task {
     protected String from;
 
     public Event(String description, String from) {

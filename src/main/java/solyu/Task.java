@@ -1,5 +1,4 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+package solyu;
 
 public class Task {
     protected String description;
@@ -30,9 +29,4 @@ public class Task {
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
-
 }
-
-
-
-

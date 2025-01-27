@@ -1,5 +1,6 @@
-public class ToDo extends Task {
+package solyu;
 
+public class ToDo extends Task {
     public ToDo(String description) {
         super(description);
     }

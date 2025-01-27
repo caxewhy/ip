@@ -1,8 +1,9 @@
+package solyu;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-
     private LocalDate by;
 
     public Deadline(String description, String by) {
@@ -16,9 +17,9 @@ public class Deadline extends Task {
         this.isDone = isDone;
     }
 
-    private LocalDate parseDateTime(String by) {
+    private LocalDate parseDateTime(String dateStr) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return LocalDate.parse(by, format);
+        return LocalDate.parse(dateStr, format);
     }
 
     @Override

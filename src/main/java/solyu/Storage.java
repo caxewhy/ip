@@ -1,30 +1,51 @@
-import java.io.*;
+package solyu;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.nio.file.Paths;
 
-public class FileManager {
-    private static final String FILE_PATH = Paths.get(System.getProperty("user.home"), "ip", "task.txt").toString();
+/**
+ * Deals with loading and saving tasks from/to a file.
+ */
+public class Storage {
+    private final String filePath;
 
-    public static ArrayList<Task> loadTasksFromFile() {
+    /**
+     * Creates a Storage object for the specified file path.
+     *
+     * @param filePath The path of the file to load/save tasks.
+     */
+    public Storage(String filePath) {
+        this.filePath = filePath;
+    }
+
+    /**
+     * Loads tasks from the file.
+     *
+     * @return An ArrayList of tasks.
+     */
+    public ArrayList<Task> loadTasksFromFile() {
         ArrayList<Task> tasks = new ArrayList<>();
-        File file = new File(FILE_PATH);
+        File file = new File(filePath);
 
         try {
             if (!file.exists()) {
                 file.getParentFile().mkdirs();
                 file.createNewFile();
-                return tasks;
+                return tasks; // return empty if no existing file
             }
 
             try (Scanner scanner = new Scanner(file)) {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
-                    if (line.isBlank()) continue;
-
+                    if (line.isBlank()) {
+                        continue;
+                    }
                     String[] parts = line.split(" \\| ");
                     if (parts.length < 3) {
-                        System.out.println("Invalid lines: " + line);
+                        System.out.println("Invalid line: " + line);
                         continue;
                     }
 
@@ -36,25 +57,22 @@ public class FileManager {
                     case "T":
                         tasks.add(new ToDo(description, isDone));
                         break;
-                        
                     case "D":
                         if (parts.length >= 4) {
                             tasks.add(new Deadline(description, parts[3], isDone));
                         } else {
-                            System.out.println("Invalid Deadline: " + line);
+                            System.out.println("Invalid Deadline line: " + line);
                         }
                         break;
-
                     case "E":
                         if (parts.length >= 4) {
                             tasks.add(new Event(description, parts[3], isDone));
                         } else {
-                            System.out.println("Invalid Events: " + line);
+                            System.out.println("Invalid Event line: " + line);
                         }
                         break;
-
                     default:
-                        System.out.println("Invalid task type : " + line);
+                        System.out.println("Invalid task type: " + line);
                     }
                 }
             }
@@ -64,8 +82,13 @@ public class FileManager {
         return tasks;
     }
 
-    public static void saveTasksToFile(ArrayList<Task> tasks) {
-        File file = new File(FILE_PATH);
+    /**
+     * Saves tasks to the file.
+     *
+     * @param tasks The list of tasks to save.
+     */
+    public void saveTasksToFile(ArrayList<Task> tasks) {
+        File file = new File(filePath);
         try {
             if (!file.exists()) {
                 file.getParentFile().mkdirs();
@@ -80,4 +103,3 @@ public class FileManager {
         }
     }
 }
-
