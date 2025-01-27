@@ -154,4 +154,22 @@ public class Ui {
         System.out.println("Now you have " + size + " tasks in the list.");
         System.out.println("____________________________________________________________");
     }
+
+    /**
+     * Displays the tasks that match the search query.
+     *
+     * @param foundTasks List of tasks that match the search query.
+     */
+    public void showFoundTasks(List<Task> foundTasks) {
+        System.out.println("____________________________________________________________");
+        if (foundTasks.isEmpty()) {
+            System.out.println(" No matching tasks found!");
+        } else {
+            System.out.println(" Here are the matching tasks in your list:");
+            for (int i = 0; i < foundTasks.size(); i++) {
+                System.out.println((i + 1) + ". " + foundTasks.get(i));
+            }
+        }
+        System.out.println("____________________________________________________________");
+    }
 }
