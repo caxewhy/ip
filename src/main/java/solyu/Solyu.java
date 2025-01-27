@@ -20,7 +20,8 @@ public class Solyu {
     public Solyu(String filePath) {
         ui = new Ui();
         parser = new Parser();
-        storage = new Storage(Paths.get(System.getProperty("user.home"), "ip", filePath).toString());
+        storage = new Storage(Paths.get(
+                System.getProperty("user.home"), "ip", filePath).toString());
         taskList = new TaskList(storage.loadTasksFromFile());
     }
 
@@ -33,6 +34,12 @@ public class Solyu {
         while (true) {
             ui.showPrompt();
             String fullCommand = ui.readCommand();
+
+            if (fullCommand == null || fullCommand.trim().isEmpty()) {
+                ui.showError("Command cannot be empty. Please enter a valid command.");
+                continue;  // Skip iteration and ask for input again
+            }
+
             String[] parsedInput = parser.parse(fullCommand);
             String command = parsedInput[0];
             String argument = parsedInput[1];
@@ -150,6 +157,11 @@ public class Solyu {
         }
     }
 
+    /**
+     * Main entry point to run the Solyu task manager application.
+     *
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         // Example usage: Using "task.txt" as the filename under user home/ip directory
         new Solyu("task.txt").run();

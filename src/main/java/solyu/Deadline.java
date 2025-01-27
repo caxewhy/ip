@@ -4,16 +4,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-    private LocalDate by;
+    private LocalDate dueDate;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String dueDate) {
         super(description);
-        this.by = parseDateTime(by);
+        this.dueDate = parseDateTime(dueDate);
     }
 
-    public Deadline(String description, String by, boolean isDone) {
+    public Deadline(String description, String dueDate, boolean isDone) {
         super(description);
-        this.by = parseDateTime(by);
+        this.dueDate = parseDateTime(dueDate);
         this.isDone = isDone;
     }
 
@@ -25,11 +25,11 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         DateTimeFormatter userFriendlyFormat = DateTimeFormatter.ofPattern("MMM dd yyyy");
-        return "[D]" + super.toString() + " (by: " + by.format(userFriendlyFormat) + ")";
+        return "[D]" + super.toString() + " (dueDate: " + dueDate.format(userFriendlyFormat) + ")";
     }
 
     @Override
     public String toFileFormat() {
-        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + by;
+        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + dueDate;
     }
 }
