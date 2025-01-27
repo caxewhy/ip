@@ -4,7 +4,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
- * The main class that ties together the UI, Parser, TaskList, and Storage components.
+ * Main class that drives the UI, Parser, TaskList, and Storage components.
  */
 public class Solyu {
     private Ui ui;
@@ -13,7 +13,7 @@ public class Solyu {
     private Storage storage;
 
     /**
-     * Constructs a Solyu instance with the given file path for task storage.
+     * Constructs a Solyu instance with the given file path for storage.
      *
      * @param filePath The relative or absolute path to the file used for storage.
      */
@@ -25,7 +25,7 @@ public class Solyu {
     }
 
     /**
-     * Runs the main application loop.
+     * Runs the main application loop, processes commands.
      */
     public void run() {
         ui.showGreeting();
@@ -150,6 +150,12 @@ public class Solyu {
         }
     }
 
+    /**
+     * The main entry point of the application.
+     * Initializes and runs the Solyu chatbot.
+     *
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args) {
         // Example usage: Using "task.txt" as the filename under user home/ip directory
         new Solyu("task.txt").run();

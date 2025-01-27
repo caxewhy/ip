@@ -1,7 +1,7 @@
 package solyu;
 
 /**
- * Deals with interpreting user input.
+ * Handles user input.
  */
 public class Parser {
     /**

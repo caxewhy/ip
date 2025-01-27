@@ -8,12 +8,14 @@ import java.util.Scanner;
 
 /**
  * Deals with loading and saving tasks from/to a file.
+ * Provides functionality to read existing tasks from the file and write updates when tasks are modified.
  */
 public class Storage {
     private final String filePath;
 
     /**
      * Creates a Storage object for the specified file path.
+     * Ensures the file exists or creates a new one if missing.
      *
      * @param filePath The path of the file to load/save tasks.
      */
@@ -22,7 +24,8 @@ public class Storage {
     }
 
     /**
-     * Loads tasks from the file.
+     * Reads and loads tasks from the storage file.
+     * If the file does not exist, it will create a new empty file.
      *
      * @return An ArrayList of tasks.
      */
@@ -83,9 +86,10 @@ public class Storage {
     }
 
     /**
-     * Saves tasks to the file.
+     * Writes the current list of tasks to the storage file.
+     * Each task is formatted and saved in a line-separated format.
      *
-     * @param tasks The list of tasks to save.
+     * @param tasks The ArrayList<Task>containing the tasks to be written to the file.
      */
     public void saveTasksToFile(ArrayList<Task> tasks) {
         File file = new File(filePath);
