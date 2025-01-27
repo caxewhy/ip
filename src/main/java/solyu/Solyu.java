@@ -42,6 +42,14 @@ public class Solyu {
                 ui.showGreeting();
                 break;
 
+            case "find":
+                if (!argument.isEmpty()) {
+                    ui.showFoundTasks(taskList.findTasks(argument));
+                } else {
+                    ui.showError("Please provide a keyword to search.");
+                }
+                break;
+
             case "add":
                 if (!argument.isEmpty()) {
                     taskList.addTask(new Task(argument));
