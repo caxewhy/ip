@@ -1,9 +1,10 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.nio.file.Paths;
 
 public class FileManager {
-    private static final String FILE_PATH = "C:/Users/chanx/Documents/ip/task.txt";
+    private static final String FILE_PATH = Paths.get(System.getProperty("user.home"), "ip", "task.txt").toString();
 
     public static ArrayList<Task> loadTasksFromFile() {
         ArrayList<Task> tasks = new ArrayList<>();
@@ -64,12 +65,19 @@ public class FileManager {
     }
 
     public static void saveTasksToFile(ArrayList<Task> tasks) {
-        try (PrintWriter writer = new PrintWriter(FILE_PATH)) {
-            for (Task task : tasks) {
-                writer.println(task.toFileFormat());
+        File file = new File(FILE_PATH);
+        try {
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+            }
+            try (PrintWriter writer = new PrintWriter(file)) {
+                for (Task task : tasks) {
+                    writer.println(task.toFileFormat());
+                }
             }
         } catch (IOException e) {
             System.out.println("Error while saving tasks: " + e.getMessage());
         }
     }
 }
+
