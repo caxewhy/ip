@@ -1,7 +1,5 @@
-import java.io.File;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.*;
 
 public class Solyu {
     public static void main(String[] args) {
