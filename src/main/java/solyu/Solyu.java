@@ -37,7 +37,7 @@ public class Solyu {
 
             if (fullCommand == null || fullCommand.trim().isEmpty()) {
                 ui.showError("Command cannot be empty. Please enter a valid command.");
-                continue;  // Skip iteration and ask for input again
+                continue; //Skip iteration and ask for input again
             }
 
             String[] parsedInput = parser.parse(fullCommand);
