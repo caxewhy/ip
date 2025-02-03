@@ -89,7 +89,7 @@ public class Storage {
      * Writes the current list of tasks to the storage file.
      * Each task is formatted and saved in a line-separated format.
      *
-     * @param tasks The ArrayList<Task>containing the tasks to be written to the file.
+     * @param tasks The {@code ArrayList<Task>} containing the tasks to be written to the file.
      */
     public void saveTasksToFile(ArrayList<Task> tasks) {
         File file = new File(filePath);

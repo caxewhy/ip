@@ -12,7 +12,7 @@ public class Parser {
      */
     public String[] parse(String fullCommand) {
         if (fullCommand == null || fullCommand.trim().isEmpty()) {
-            return new String[] {"", ""};  // Return empty command and argument safely
+            return new String[] {"", ""}; // Return empty command and argument safely
         }
 
         String[] parts = fullCommand.split(" ", 2);
