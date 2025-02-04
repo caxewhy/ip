@@ -9,6 +9,9 @@ import java.util.Scanner;
 public class Ui {
     private final Scanner scanner;
 
+    /**
+     * Constructs a Ui object with a scanner for user input.
+     */
     public Ui() {
         scanner = new Scanner(System.in);
     }
@@ -17,10 +20,7 @@ public class Ui {
      * Prints the greeting message.
      */
     public void showGreeting() {
-        System.out.println("____________________________________________________________");
-        System.out.println(" Hello! I'm Solyu");
-        System.out.println(" What can I do for you?");
-        System.out.println("____________________________________________________________");
+        System.out.println(getGreetingMessage());
     }
 
     /**
@@ -36,8 +36,7 @@ public class Ui {
      * @return The full command entered by the user.
      */
     public String readCommand() {
-        String input = scanner.nextLine();
-        return (input != null) ? input.trim() : "";
+        return scanner.nextLine().trim();
     }
 
     /**
@@ -46,131 +45,154 @@ public class Ui {
      * @param message The error message to display.
      */
     public void showError(String message) {
-        System.out.println("____________________________________________________________");
-        System.out.println(message);
-        System.out.println("____________________________________________________________");
+        System.out.println(getErrorMessage(message));
     }
 
     /**
-     * Prints a goodbye message.
+     * Prints a generic message.
+     *
+     * @param message The message to display.
      */
-    public void showGoodbye() {
-        System.out.println("____________________________________________________________");
-        System.out.println(" Bye. Hope to see you again soon!");
-        System.out.println("____________________________________________________________");
-    }
-
     public void showMessage(String message) {
         System.out.println(message);
     }
 
     /**
-     * Prints a task added message.
+     * Returns the greeting message.
+     *
+     * @return Greeting message as a string.
+     */
+    public String getGreetingMessage() {
+        return "Hello! I'm Solyu\n"
+                + "What can I do for you?";
+    }
+
+    /**
+     * Returns an error message.
+     *
+     * @param message The error message.
+     * @return Formatted error message.
+     */
+    public String getErrorMessage(String message) {
+        return message;
+    }
+
+    /**
+     * Returns the goodbye message.
+     *
+     * @return Goodbye message as a string.
+     */
+    public String getGoodbyeMessage() {
+        return "Bye. Hope to see you again soon!";
+    }
+
+    /**
+     * Returns a message for a task being added.
+     *
+     * @param description Task description.
+     * @return Formatted task added message.
+     */
+    public String getTaskAddedMessage(String description) {
+        return "Task added: " + description;
+    }
+
+    /**
+     * Returns a formatted message for a ToDo task being added.
+     *
+     * @param description Task description.
+     * @param size The updated number of tasks.
+     * @return Formatted ToDo added message.
+     */
+    public String getToDoAddedMessage(String description, int size) {
+        return "Got it. I've added this task:\n"
+                + "[T][ ] " + description + "\n"
+                + "Now you have " + size + " tasks in the list.";
+    }
+
+    /**
+     * Returns a formatted message for an event task being added.
      *
      * @param description The task description.
+     * @param from The start time.
+     * @param to The end time.
+     * @return Formatted event added message.
      */
-    public void showTaskAdded(String description) {
-        System.out.println("____________________________________________________________");
-        System.out.println("Task added: " + description);
-        System.out.println("____________________________________________________________");
+    public String getEventAddedMessage(String description, String from, String to) {
+        return "Got it. I've added this task:\n"
+                + "[E][ ] " + description + " (from: " + from + " to " + to + ")";
     }
 
     /**
-     * Prints a todo added message with the total size of tasks.
-     */
-    public void showToDoAdded(String description, int size) {
-        System.out.println("____________________________________________________________");
-        System.out.println("Got it. I've added this task:");
-        System.out.println("[T][ ] " + description);
-        System.out.println("Now you have " + size + " tasks in the list.");
-        System.out.println("____________________________________________________________");
-    }
-
-    /**
-     * Prints a deadline added message with the total size of tasks.
-     */
-    public void showDeadlineAdded(String description, String by, int size) {
-        System.out.println("____________________________________________________________");
-        System.out.println("Got it. I've added this task:");
-        System.out.println("[D][ ] " + description + " (by: " + by + ")");
-        System.out.println("Now you have " + size + " tasks in the list.");
-        System.out.println("____________________________________________________________");
-    }
-
-    /**
-     * Prints an event added message with the total size of tasks.
-     */
-    public void showEventAdded(String desc, String from, String to, int size) {
-        System.out.println("____________________________________________________________");
-        System.out.println("Got it. I've added this task:");
-        System.out.println("[E][ ] " + desc + " (from: " + from + " to " + to + ")");
-        System.out.println("Now you have " + size + " tasks in the list.");
-        System.out.println("____________________________________________________________");
-    }
-
-    /**
-     * Prints the list of tasks.
+     * Returns a formatted message for marking a task as done.
      *
-     * @param tasks The tasks to display.
+     * @param task The marked task.
+     * @return Formatted message for marking a task.
      */
-    public void showList(List<Task> tasks) {
-        System.out.println("____________________________________________________________");
+    public String getTaskMarkedMessage(Task task) {
+        return "Task marked as done: " + task;
+    }
+
+    /**
+     * Returns a formatted message for unmarking a task.
+     *
+     * @param task The unmarked task.
+     * @return Formatted message for unmarking a task.
+     */
+    public String getTaskUnmarkedMessage(Task task) {
+        return "Task unmarked: " + task;
+    }
+
+    /**
+     * Returns a formatted message for deleting a task.
+     *
+     * @param task The deleted task.
+     * @param size The updated number of tasks.
+     * @return Formatted message for task deletion.
+     */
+    public String getTaskDeletedMessage(Task task, int size) {
+        return "Noted. I've removed this task:\n"
+                + task + "\n"
+                + "Now you have " + size + " tasks in the list.";
+    }
+
+    /**
+     * Returns a formatted list of tasks.
+     *
+     * @param tasks List of tasks.
+     * @return Formatted task list.
+     */
+    public String getListAsString(List<Task> tasks) {
         if (tasks.isEmpty()) {
-            System.out.println("Task list is empty!");
-        } else {
-            System.out.println("You have " + tasks.size() + " tasks in your list.");
-            System.out.println("Here is your list:");
-            for (int i = 0; i < tasks.size(); i++) {
-                System.out.println((i + 1) + ". " + tasks.get(i));
-            }
+            return "Task list is empty!";
         }
-        System.out.println("____________________________________________________________");
+
+        StringBuilder listString = new StringBuilder();
+        listString.append("Here is your task list:\n");
+
+        for (int i = 0; i < tasks.size(); i++) {
+            listString.append((i + 1)).append(". ").append(tasks.get(i)).append("\n");
+        }
+        return listString.toString();
     }
 
     /**
-     * Prints a task marked message.
-     */
-    public void showTaskMarked(Task task) {
-        System.out.println("____________________________________________________________");
-        System.out.println("Task marked as done: " + task);
-        System.out.println("____________________________________________________________");
-    }
-
-    /**
-     * Prints a task unmarked message.
-     */
-    public void showTaskUnmarked(Task task) {
-        System.out.println("____________________________________________________________");
-        System.out.println("Task unmarked: " + task);
-        System.out.println("____________________________________________________________");
-    }
-
-    /**
-     * Prints a task deleted message.
-     */
-    public void showTaskDeleted(Task task, int size) {
-        System.out.println("____________________________________________________________");
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(task);
-        System.out.println("Now you have " + size + " tasks in the list.");
-        System.out.println("____________________________________________________________");
-    }
-
-    /**
-     * Displays the tasks that match the search query.
+     * Returns a formatted message for found tasks.
      *
-     * @param foundTasks List of tasks that match the search query.
+     * @param foundTasks List of matching tasks.
+     * @return Formatted search results message.
      */
-    public void showFoundTasks(List<Task> foundTasks) {
-        System.out.println("____________________________________________________________");
+    public String getFoundTasksMessage(List<Task> foundTasks) {
         if (foundTasks.isEmpty()) {
-            System.out.println(" No matching tasks found!");
-        } else {
-            System.out.println(" Here are the matching tasks in your list:");
-            for (int i = 0; i < foundTasks.size(); i++) {
-                System.out.println((i + 1) + ". " + foundTasks.get(i));
-            }
+            return "No matching tasks found!";
         }
-        System.out.println("____________________________________________________________");
+
+        StringBuilder foundList = new StringBuilder();
+        foundList.append("Here are the matching tasks in your list:\n");
+
+        for (int i = 0; i < foundTasks.size(); i++) {
+            foundList.append((i + 1)).append(". ").append(foundTasks.get(i)).append("\n");
+        }
+        return foundList.toString();
     }
+
 }
