@@ -92,6 +92,8 @@ public class Storage {
      * @param tasks The {@code ArrayList<Task>} containing the tasks to be written to the file.
      */
     public void saveTasksToFile(ArrayList<Task> tasks) {
+        assert tasks != null : "Task list to be saved should not be null";
+
         File file = new File(filePath);
         try {
             if (!file.exists()) {
