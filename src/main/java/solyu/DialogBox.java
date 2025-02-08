@@ -1,5 +1,6 @@
 package solyu;
 
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -11,6 +12,7 @@ import javafx.scene.layout.HBox;
  */
 public class DialogBox extends HBox {
     private Label text;
+    @FXML
     private ImageView displayPicture;
 
     /**
@@ -42,6 +44,8 @@ public class DialogBox extends HBox {
         Label userText = new Label(inputText);
         DialogBox db = new DialogBox(userText, img);
         db.setAlignment(Pos.TOP_RIGHT); // Align user message to right
+        db.setStyle("-fx-background-color: #FFD3D3; -fx-background-radius: 15px; -fx-padding: 10px;");
+        userText.setWrapText(true);
         return db;
     }
 
@@ -61,6 +65,9 @@ public class DialogBox extends HBox {
         db.getChildren().clear();
         db.getChildren().addAll(img, botText);
 
+        db.setStyle("-fx-background-color: #AEC6CF; -fx-background-radius: 15px; -fx-padding: 10px;");
+        botText.setWrapText(true);
+
         return db;
     }
 
@@ -79,6 +86,9 @@ public class DialogBox extends HBox {
 
         db.getChildren().clear();
         db.getChildren().addAll(img, botText);
+
+        db.setStyle("-fx-background-color: #AEC6CF; -fx-background-radius: 15px; -fx-padding: 10px;");
+        botText.setWrapText(true);
 
         return db;
     }

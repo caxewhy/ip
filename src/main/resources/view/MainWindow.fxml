@@ -9,10 +9,13 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="solyu.MainWindow">
+            fx:controller="solyu.MainWindow"
+            style="-fx-background-image: url('/images/background.png');
+                   -fx-background-size: cover;">
 
     <children>
-        <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="530.0" prefWidth="385.0">
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="530.0" prefWidth="385.0"
+                    style="-fx-background: transparent; -fx-background-color: transparent;">
             <content>
                 <VBox fx:id="dialogContainer" spacing="10.0">
                     <padding>
