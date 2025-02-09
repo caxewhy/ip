@@ -50,7 +50,10 @@ public class TaskList {
      * @param index The task index.
      */
     public void markTask(int index) {
-        tasks.get(index).markAsDone();
+        tasks.stream()
+                .skip(index) // Skip to the desired task
+                .findFirst()
+                .ifPresent(Task::markAsDone);
     }
 
     /**
@@ -59,7 +62,10 @@ public class TaskList {
      * @param index The task index.
      */
     public void unmarkTask(int index) {
-        tasks.get(index).unmark();
+        tasks.stream()
+                .skip(index) // Skip to the desired task
+                .findFirst()
+                .ifPresent(Task::unmark);
     }
 
     /**

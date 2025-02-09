@@ -2,7 +2,7 @@ package solyu;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -97,11 +97,9 @@ public class Storage {
             if (!file.exists()) {
                 file.getParentFile().mkdirs();
             }
-            try (PrintWriter writer = new PrintWriter(file)) {
-                for (Task task : tasks) {
-                    writer.println(task.toFileFormat());
-                }
-            }
+            Files.write(file.toPath(), tasks.stream()
+                    .map(Task::toFileFormat)
+                    .toList());
         } catch (IOException e) {
             System.out.println("Error while saving tasks: " + e.getMessage());
         }
