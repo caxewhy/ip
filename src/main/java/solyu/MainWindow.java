@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
  * Handles user input and chatbot responses.
  */
 public class MainWindow {
+    private static final String GREETING_MESSAGE = "Hello! I'm Solyu.\nWhat can I do for you?";
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -37,7 +38,7 @@ public class MainWindow {
 
         // Show the greeting message when GUI starts
         dialogContainer.getChildren().add(
-                DialogBox.getSolyuDialog("Hello! I'm Solyu.\nWhat can I do for you?")
+                DialogBox.getSolyuDialog(GREETING_MESSAGE)
         );
 
         // Ensure Enter key sends input

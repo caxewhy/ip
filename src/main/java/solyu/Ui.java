@@ -7,6 +7,8 @@ import java.util.Scanner;
  * Handles all input/output operations with the user.
  */
 public class Ui {
+    private static final String PROMPT_MESSAGE = "Enter a command: ";
+    private static final String MESSAGE_EMPTY_LIST = "Task list is empty!";
     private final Scanner scanner;
 
     /**
@@ -27,7 +29,7 @@ public class Ui {
      * Prints a prompt for user input.
      */
     public void showPrompt() {
-        System.out.print(" Enter a command: ");
+        System.out.print(PROMPT_MESSAGE);
     }
 
     /**
@@ -163,7 +165,7 @@ public class Ui {
      */
     public String getListAsString(List<Task> tasks) {
         if (tasks.isEmpty()) {
-            return "Task list is empty!";
+            return MESSAGE_EMPTY_LIST;
         }
 
         StringBuilder listString = new StringBuilder();
