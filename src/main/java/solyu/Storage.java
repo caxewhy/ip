@@ -11,6 +11,8 @@ import java.util.Scanner;
  * Provides functionality to read existing tasks from the file and write updates when tasks are modified.
  */
 public class Storage {
+    private static final String ERROR_LOAD_TASKS = "Error while loading tasks: ";
+    private static final String ERROR_SAVE_TASKS = "Error while saving tasks: ";
     private final String filePath;
 
     /**
@@ -80,7 +82,7 @@ public class Storage {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error while loading tasks: " + e.getMessage());
+            System.out.println(ERROR_LOAD_TASKS + e.getMessage());
         }
         return tasks;
     }
@@ -103,7 +105,7 @@ public class Storage {
                     .map(Task::toFileFormat)
                     .toList());
         } catch (IOException e) {
-            System.out.println("Error while saving tasks: " + e.getMessage());
+            System.out.println(ERROR_SAVE_TASKS + e.getMessage());
         }
     }
 }

@@ -11,6 +11,10 @@ import javafx.scene.layout.HBox;
  * Represents a dialog box for displaying user and chatbot messages in the GUI.
  */
 public class DialogBox extends HBox {
+    private static final String BOT_DIALOG_STYLE =
+            "-fx-background-color: #AEC6CF; -fx-background-radius: 15px; -fx-padding: 10px;";
+    private static final String USER_DIALOG_STYLE =
+            "-fx-background-color: #FFD3D3; -fx-background-radius: 15px; -fx-padding: 10px;";
     private Label text;
     @FXML
     private ImageView displayPicture;
@@ -44,7 +48,7 @@ public class DialogBox extends HBox {
         Label userText = new Label(inputText);
         DialogBox db = new DialogBox(userText, img);
         db.setAlignment(Pos.TOP_RIGHT); // Align user message to right
-        db.setStyle("-fx-background-color: #FFD3D3; -fx-background-radius: 15px; -fx-padding: 10px;");
+        db.setStyle(USER_DIALOG_STYLE);
         userText.setWrapText(true);
         return db;
     }
@@ -65,7 +69,7 @@ public class DialogBox extends HBox {
         db.getChildren().clear();
         db.getChildren().addAll(img, botText);
 
-        db.setStyle("-fx-background-color: #AEC6CF; -fx-background-radius: 15px; -fx-padding: 10px;");
+        db.setStyle(BOT_DIALOG_STYLE);
         botText.setWrapText(true);
 
         return db;
@@ -87,7 +91,7 @@ public class DialogBox extends HBox {
         db.getChildren().clear();
         db.getChildren().addAll(img, botText);
 
-        db.setStyle("-fx-background-color: #AEC6CF; -fx-background-radius: 15px; -fx-padding: 10px;");
+        db.setStyle(BOT_DIALOG_STYLE);
         botText.setWrapText(true);
 
         return db;

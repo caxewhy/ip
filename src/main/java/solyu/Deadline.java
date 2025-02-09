@@ -8,6 +8,8 @@ import java.time.format.DateTimeParseException;
  * Represents a task with a deadline.
  */
 public class Deadline extends Task {
+    private static final String ERROR_INVALID_DATE_FORMAT =
+            "Error: Invalid date format! Please use yyyy-MM-dd (e.g., 2024-02-05).";
     private LocalDate dueDate;
 
     /**
@@ -52,9 +54,7 @@ public class Deadline extends Task {
             DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             return LocalDate.parse(dateStr, format);
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException(
-                    "Error: Invalid date format! Please use yyyy-MM-dd (e.g., 2024-02-05)."
-            );
+            throw new IllegalArgumentException(ERROR_INVALID_DATE_FORMAT);
         }
     }
 
