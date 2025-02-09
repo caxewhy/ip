@@ -19,6 +19,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String dueDate) {
         super(description);
+        assert dueDate != null && !dueDate.trim().isEmpty() : "Due date should not be null or empty";
         this.dueDate = parseDateTime(dueDate);
     }
 
@@ -45,6 +46,8 @@ public class Deadline extends Task {
      * @throws IllegalArgumentException if the date format is invalid.
      */
     private LocalDate parseDateTime(String dateStr) {
+        assert dateStr != null && !dateStr.trim().isEmpty() : "Date string should not be null or empty";
+
         try {
             DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             return LocalDate.parse(dateStr, format);
