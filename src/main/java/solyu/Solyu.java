@@ -36,6 +36,8 @@ public class Solyu {
      * @param filePath The relative or absolute path to the file used for storage.
      */
     public Solyu(String filePath) {
+        assert filePath != null && !filePath.trim().isEmpty() : "File path should not be null or empty";
+
         ui = new Ui();
         parser = new Parser();
         storage = new Storage(Paths.get(
@@ -76,6 +78,8 @@ public class Solyu {
      * @return Response from Solyu.
      */
     public String getResponse(String input) {
+        assert input != null : "Input should not be null";
+
         if (input == null || input.trim().isEmpty()) {
             return ui.getErrorMessage(ERROR_EMPTY_COMMAND);
         }
@@ -230,11 +234,14 @@ public class Solyu {
      * @return Formatted message confirming action or an error message.
      */
     private String handleTaskMark(String argument, boolean isMarking) {
+        assert argument != null : "Task marking argument should not be null";
+
         if (argument.isEmpty()) {
             return ERROR_INVALID_TASK_NUMBER;
         }
         try {
             int index = Integer.parseInt(argument) - 1;
+            assert index >= 0 && index < taskList.size() : "Task index should be within valid range";
             if (isMarking) {
                 taskList.markTask(index);
                 return ui.getTaskMarkedMessage(taskList.getTask(index));
