@@ -30,9 +30,17 @@ public class TaskList {
      *
      * @param task The task to add.
      */
-    public void addTask(Task task) {
+    public boolean addTask(Task task) {
         assert task != null : "Task to be added should not be null";
+        boolean isDuplicate = tasks.stream()
+                .anyMatch(existingTask -> existingTask.equals(task));
+
+        if (isDuplicate) {
+            return false; // Task is a duplicate
+        }
+
         tasks.add(task);
+        return true;
     }
 
     /**

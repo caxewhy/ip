@@ -25,6 +25,8 @@ public class Solyu {
             "Error: Please specify an event with a valid period: event <desc> /from X /to Y";
     private static final String ERROR_UNKNOWN_COMMAND =
             "Oh no! I do not understand your command: ";
+    private static final String ERROR_DUPLICATE_TASK =
+            "This task already exists in your list!";
     private final Ui ui;
     private final Parser parser;
     private final TaskList taskList;
@@ -154,7 +156,11 @@ public class Solyu {
         if (argument.isEmpty()) {
             return ui.getErrorMessage(ERROR_EMPTY_DESCRIPTION);
         }
-        taskList.addTask(task);
+        boolean isAdded = taskList.addTask(task);
+
+        if (!isAdded) {
+            return ui.getErrorMessage(ERROR_DUPLICATE_TASK);
+        }
         storage.saveTasksToFile(new ArrayList<>(taskList.getTasks()));
         return ui.getTaskAddedMessage(argument);
     }
@@ -169,7 +175,12 @@ public class Solyu {
         if (argument.isEmpty()) {
             return ui.getErrorMessage(ERROR_EMPTY_DESCRIPTION);
         }
-        taskList.addTask(new ToDo(argument));
+        ToDo todo = new ToDo(argument);
+        boolean isAdded = taskList.addTask(todo);
+
+        if (!isAdded) {
+            return ui.getErrorMessage(ERROR_DUPLICATE_TASK);
+        }
         storage.saveTasksToFile(new ArrayList<>(taskList.getTasks()));
         return ui.getToDoAddedMessage(argument, taskList.size());
     }
@@ -193,7 +204,13 @@ public class Solyu {
         }
 
         try {
-            taskList.addTask(new Deadline(deadlineDesc, deadlineBy));
+            Deadline deadline = new Deadline(deadlineDesc, deadlineBy);
+            boolean isAdded = taskList.addTask(deadline);
+
+            if (!isAdded) {
+                return ui.getErrorMessage(ERROR_DUPLICATE_TASK);
+            }
+
             storage.saveTasksToFile(new ArrayList<>(taskList.getTasks()));
             return "Added deadline: " + deadlineDesc + " (by: " + deadlineBy + ")";
         } catch (IllegalArgumentException e) {
@@ -221,7 +238,12 @@ public class Solyu {
             return ERROR_MISSING_EVENT_PERIOD;
         }
 
-        taskList.addTask(new Event(description, period[0].trim() + " to " + period[1].trim()));
+        Event event = new Event(description, period[0].trim() + " to " + period[1].trim());
+        boolean isAdded = taskList.addTask(event);
+
+        if (!isAdded) {
+            return ui.getErrorMessage(ERROR_DUPLICATE_TASK);
+        }
         storage.saveTasksToFile(new ArrayList<>(taskList.getTasks()));
         return ui.getEventAddedMessage(description, period[0].trim(), period[1].trim());
     }
