@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
  */
 public class Deadline extends Task {
     private static final String ERROR_INVALID_DATE_FORMAT =
-            "Error: Invalid date format! Please use yyyy-MM-dd (e.g., 2024-02-05).";
+            "Aye captain, Invalid date format! Please use yyyy-MM-dd (e.g., 2024-02-05).";
     private LocalDate dueDate;
 
     /**

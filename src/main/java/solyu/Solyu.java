@@ -12,21 +12,21 @@ public class Solyu {
     private static final String ERROR_EMPTY_COMMAND =
             "Command cannot be empty. Please enter a valid command.";
     private static final String ERROR_INVALID_TASK_NUMBER =
-            "Error: Please specify a valid task number!";
+            "Aye captain, Please specify a valid task number!";
     private static final String ERROR_TASK_NUMBER_OUT_OF_RANGE =
-            "Error: Task number out of range! Please enter a valid task number.";
+            "Aye captain, Task number out of range! Please enter a valid task number.";
     private static final String ERROR_INVALID_DATE_FORMAT =
-            "Error: Invalid date format! Please use yyyy-MM-dd.";
+            "Aye captain, Invalid date format! Please use yyyy-MM-dd.";
     private static final String ERROR_EMPTY_DESCRIPTION =
-            "Error: Please specify a task!";
+            "Aye captain, Please specify a task!";
     private static final String ERROR_MISSING_DEADLINE =
-            "Error: Please specify a deadline in the format: deadline <desc> /by yyyy-MM-dd";
+            "Aye captain, Please specify a deadline in the format: deadline <desc> /by yyyy-MM-dd";
     private static final String ERROR_MISSING_EVENT_PERIOD =
-            "Error: Please specify an event with a valid period: event <desc> /from X /to Y";
+            "Aye captain, Please specify an event with a valid period: event <desc> /from X /to Y";
     private static final String ERROR_UNKNOWN_COMMAND =
-            "Oh no! I do not understand your command: ";
+            "Aye captain, do you want the ship to sink! I do not understand your command: ";
     private static final String ERROR_DUPLICATE_TASK =
-            "This task already exists in your list!";
+            "Aye captain, This task already exists in your list!";
     private final Ui ui;
     private final Parser parser;
     private final TaskList taskList;
