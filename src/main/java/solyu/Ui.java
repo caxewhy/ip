@@ -7,8 +7,8 @@ import java.util.Scanner;
  * Handles all input/output operations with the user.
  */
 public class Ui {
-    private static final String PROMPT_MESSAGE = "Enter a command: ";
-    private static final String MESSAGE_EMPTY_LIST = "Task list is empty!";
+    private static final String PROMPT_MESSAGE = "Aye captain, Give me a command: ";
+    private static final String MESSAGE_EMPTY_LIST = "Aye captain, Task list is empty!";
     private final Scanner scanner;
 
     /**

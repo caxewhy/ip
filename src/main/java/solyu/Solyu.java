@@ -12,19 +12,21 @@ public class Solyu {
     private static final String ERROR_EMPTY_COMMAND =
             "Command cannot be empty. Please enter a valid command.";
     private static final String ERROR_INVALID_TASK_NUMBER =
-            "Error: Please specify a valid task number!";
+            "Aye captain, Please specify a valid task number!";
     private static final String ERROR_TASK_NUMBER_OUT_OF_RANGE =
-            "Error: Task number out of range! Please enter a valid task number.";
+            "Aye captain, Task number out of range! Please enter a valid task number.";
     private static final String ERROR_INVALID_DATE_FORMAT =
-            "Error: Invalid date format! Please use yyyy-MM-dd.";
+            "Aye captain, Invalid date format! Please use yyyy-MM-dd.";
     private static final String ERROR_EMPTY_DESCRIPTION =
-            "Error: Please specify a task!";
+            "Aye captain, Please specify a task!";
     private static final String ERROR_MISSING_DEADLINE =
-            "Error: Please specify a deadline in the format: deadline <desc> /by yyyy-MM-dd";
+            "Aye captain, Please specify a deadline in the format: deadline <desc> /by yyyy-MM-dd";
     private static final String ERROR_MISSING_EVENT_PERIOD =
-            "Error: Please specify an event with a valid period: event <desc> /from X /to Y";
+            "Aye captain, Please specify an event with a valid period: event <desc> /from X /to Y";
     private static final String ERROR_UNKNOWN_COMMAND =
-            "Oh no! I do not understand your command: ";
+            "Aye captain, do you want the ship to sink! I do not understand your command: ";
+    private static final String ERROR_DUPLICATE_TASK =
+            "Aye captain, This task already exists in your list!";
     private final Ui ui;
     private final Parser parser;
     private final TaskList taskList;
@@ -154,7 +156,11 @@ public class Solyu {
         if (argument.isEmpty()) {
             return ui.getErrorMessage(ERROR_EMPTY_DESCRIPTION);
         }
-        taskList.addTask(task);
+        boolean isAdded = taskList.addTask(task);
+
+        if (!isAdded) {
+            return ui.getErrorMessage(ERROR_DUPLICATE_TASK);
+        }
         storage.saveTasksToFile(new ArrayList<>(taskList.getTasks()));
         return ui.getTaskAddedMessage(argument);
     }
@@ -169,7 +175,12 @@ public class Solyu {
         if (argument.isEmpty()) {
             return ui.getErrorMessage(ERROR_EMPTY_DESCRIPTION);
         }
-        taskList.addTask(new ToDo(argument));
+        ToDo todo = new ToDo(argument);
+        boolean isAdded = taskList.addTask(todo);
+
+        if (!isAdded) {
+            return ui.getErrorMessage(ERROR_DUPLICATE_TASK);
+        }
         storage.saveTasksToFile(new ArrayList<>(taskList.getTasks()));
         return ui.getToDoAddedMessage(argument, taskList.size());
     }
@@ -193,7 +204,13 @@ public class Solyu {
         }
 
         try {
-            taskList.addTask(new Deadline(deadlineDesc, deadlineBy));
+            Deadline deadline = new Deadline(deadlineDesc, deadlineBy);
+            boolean isAdded = taskList.addTask(deadline);
+
+            if (!isAdded) {
+                return ui.getErrorMessage(ERROR_DUPLICATE_TASK);
+            }
+
             storage.saveTasksToFile(new ArrayList<>(taskList.getTasks()));
             return "Added deadline: " + deadlineDesc + " (by: " + deadlineBy + ")";
         } catch (IllegalArgumentException e) {
@@ -221,7 +238,12 @@ public class Solyu {
             return ERROR_MISSING_EVENT_PERIOD;
         }
 
-        taskList.addTask(new Event(description, period[0].trim() + " to " + period[1].trim()));
+        Event event = new Event(description, period[0].trim() + " to " + period[1].trim());
+        boolean isAdded = taskList.addTask(event);
+
+        if (!isAdded) {
+            return ui.getErrorMessage(ERROR_DUPLICATE_TASK);
+        }
         storage.saveTasksToFile(new ArrayList<>(taskList.getTasks()));
         return ui.getEventAddedMessage(description, period[0].trim(), period[1].trim());
     }
@@ -278,10 +300,10 @@ public class Solyu {
         }
     }
     /**
-     * The main entry point of the application.
-     * Initializes and runs the Solyu chatbot.
+     * Starts the Solyu chatbot application.
+     * This method intializes and runs the chatbot's main loop.
      *
-     * @param args Command line arguments
+     * @param args Command-line arguments (not used).
      */
     public static void main(String[] args) {
         new Solyu("task.txt").run();

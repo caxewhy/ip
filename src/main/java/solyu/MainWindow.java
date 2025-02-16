@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
  * Handles user input and chatbot responses.
  */
 public class MainWindow {
-    private static final String GREETING_MESSAGE = "Hello! I'm Solyu.\nWhat can I do for you?";
+    private static final String GREETING_MESSAGE = "Aye captain! I'm Solyu.\nGive me a command!";
     @FXML
     private ScrollPane scrollPane;
     @FXML
