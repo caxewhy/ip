@@ -36,6 +36,6 @@ public class Parser {
      * @return true if invalid characters exist, false otherwise.
      */
     private boolean containsInvalidCharacters(String input) {
-        return input.matches(".*[~`!@#$%^&*+=<>?/{}|].*"); // Exclude normal punctuation
+        return input.matches(".*[~`!@#$%^&*+=<>?{}|].*"); // Exclude normal punctuation
     }
 }
