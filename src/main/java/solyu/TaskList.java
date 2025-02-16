@@ -55,9 +55,9 @@ public class TaskList {
     }
 
     /**
-     * Marks a task as done.
+     * Marks the specified task as completed.
      *
-     * @param index The task index.
+     * @param index The task index to mark as done (0-based).
      */
     public void markTask(int index) {
         tasks.stream()

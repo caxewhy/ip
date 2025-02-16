@@ -300,10 +300,10 @@ public class Solyu {
         }
     }
     /**
-     * The main entry point of the application.
-     * Initializes and runs the Solyu chatbot.
+     * Starts the Solyu chatbot application.
+     * This method intializes and runs the chatbot's main loop.
      *
-     * @param args Command line arguments
+     * @param args Command-line arguments (not used).
      */
     public static void main(String[] args) {
         new Solyu("task.txt").run();
