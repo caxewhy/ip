@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClass.set("solyu.Solyu")
+    mainClass.set("solyu.Launcher")
 }
 
 shadowJar {
