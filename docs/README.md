@@ -1,8 +1,10 @@
 # Solyu Chatbot - User Guide
 
 ## Introduction
+> "Efficiency is doing things right; effectiveness is doing the right things." – [Peter Drucker](https://intranet.engineering.ucdavis.edu/sites/g/files/dgvnsk9601/files/inline-files/Effectiveness-vs.-efficiency-%E2%80%93-Let%E2%80%99s-not-confuse-the-two-1.pdf)
 
-Solyu is a **Command Line Interface (CLI)-based task management chatbot** that helps you keep track of your tasks, deadlines, and events. Designed for **fast and efficient task management**, Solyu supports multiple task types and provides useful features such as task searching, marking, and deletion.
+![Solyu Chatbot](/docs/Ui.png)   
+Solyu is a **task management application** optimized for fast typists. It is a **Command Line Interface (CLI)-based task management chatbot** that helps you keep track of your tasks, deadlines, and events. Designed for **fast and efficient task management**, Solyu supports multiple task types and provides useful features such as task searching, marking, and deletion.
 
 ---
 
