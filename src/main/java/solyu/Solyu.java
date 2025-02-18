@@ -37,13 +37,10 @@ public class Solyu {
      *
      * @param filePath The relative or absolute path to the file used for storage.
      */
-    public Solyu(String filePath) {
-        assert filePath != null && !filePath.trim().isEmpty() : "File path should not be null or empty";
-
+    public Solyu() {
         ui = new Ui();
         parser = new Parser();
-        storage = new Storage(Paths.get(
-                System.getProperty("user.home"), "ip", filePath).toString());
+        storage = new Storage();
         taskList = new TaskList(storage.loadTasksFromFile());
     }
 
@@ -69,6 +66,7 @@ public class Solyu {
 
             if ("bye".equals(parser.parse(fullCommand)[0])) {
                 isRunning = false;
+                System.exit(0);
             }
         }
     }
@@ -123,7 +121,9 @@ public class Solyu {
 
         case "bye":
             storage.saveTasksToFile(new ArrayList<>(taskList.getTasks()));
-            return ui.getGoodbyeMessage();
+            String goodbyeMessage = ui.getGoodbyeMessage();
+            System.exit(0); // Exits the system completely
+            return goodbyeMessage;
 
         default:
             return ui.getErrorMessage(ERROR_UNKNOWN_COMMAND + command + "\nPlease try another command :)");
@@ -199,8 +199,10 @@ public class Solyu {
         String deadlineDesc = deadlineParts[0].trim();
         String deadlineBy = deadlineParts[1].trim();
 
-        if (deadlineDesc.isEmpty() || deadlineBy.isEmpty()) {
+        if (deadlineDesc.isEmpty()) {
             return ERROR_EMPTY_DESCRIPTION;
+        } else if (deadlineBy.isEmpty()) {
+            return ERROR_MISSING_DEADLINE;
         }
 
         try {
@@ -306,6 +308,6 @@ public class Solyu {
      * @param args Command-line arguments (not used).
      */
     public static void main(String[] args) {
-        new Solyu("task.txt").run();
+        new Solyu().run();
     }
 }

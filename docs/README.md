@@ -18,6 +18,7 @@ Solyu is a **task management application** optimized for fast typists. It is a *
 2. Open a terminal and navigate to the folder where `Solyu.jar` is located.
 3. Run the chatbot using the command: ```java -jar Solyu.jar```
 4. Solyu will greet you and wait for your commands.
+5. A task.txt will be created at ./data/task.txt.
 
 ---
 

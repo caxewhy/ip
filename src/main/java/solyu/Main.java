@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  * The entry point of the JavaFX UI for Solyu.
  */
 public class Main extends Application {
-    private Solyu solyu = new Solyu("task.txt");
+    private Solyu solyu = new Solyu();
 
     @Override
     public void start(Stage stage) {
