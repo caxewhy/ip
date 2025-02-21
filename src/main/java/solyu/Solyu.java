@@ -265,6 +265,9 @@ public class Solyu {
         try {
             int index = Integer.parseInt(argument) - 1;
             assert index >= 0 && index < taskList.size() : "Task index should be within valid range";
+            if (index < 0 || index >= taskList.size()) {
+                return ui.getErrorMessage(ERROR_TASK_NUMBER_OUT_OF_RANGE);
+            }
             if (isMarking) {
                 taskList.markTask(index);
                 return ui.getTaskMarkedMessage(taskList.getTask(index));
