@@ -129,7 +129,9 @@ Solyu **prevents duplicate tasks** by checking if a task with the **same descrip
 **Expected Output:**
 
     This task already exists in your list!
+
 ---
+
 ## **FAQ**
 ### Where is my data stored?
 Your tasks are stored in a file called **`task.txt`**, located in:
